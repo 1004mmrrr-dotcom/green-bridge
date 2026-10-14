@@ -1,3 +1,12 @@
+화면에 아무것도 안 나오거나 오류가 발생한다면, 코드 수정 과정에서 HTML 태그가 살짝 빠졌거나 꼬였을 가능성이 가장 높습니다!
+
+GitHub 저장소의 index.html 파일을 가장 안정적인 버전으로 완전히 새로 깔끔하게 교체해 보겠습니다.
+
+🛠️ 문제 해결용 전체 코드 (index.html)
+아래 코드는 오류를 방지하도록 스크립트와 태그를 완벽하게 보완한 코드입니다.
+
+아래 상자 전체를 복사해서 붙여넣어 보세요!
+
 HTML
 <!DOCTYPE html>
 <html lang="ko">
@@ -14,7 +23,6 @@ HTML
         
         .container { max-width: 850px; margin: 0 auto; padding: 30px 20px; }
         
-        /* 1. 카테고리 탭 메뉴 스타일 */
         .tab-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
         .tab-btn { padding: 10px 20px; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 20px; color: #2e7d32; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
         .tab-btn:hover, .tab-btn.active { background: #2e7d32; color: white; border-color: #2e7d32; }
@@ -31,12 +39,10 @@ HTML
         .btn-official { display: inline-block; padding: 8px 16px; background-color: #f1f8e9; color: #2e7d32; text-decoration: none; border-radius: 5px; font-size: 0.9rem; font-weight: bold; border: 1px solid #c8e6c9; transition: 0.2s; }
         .btn-official:hover { background-color: #c8e6c9; }
 
-        /* 2. FAQ 스타일 */
         .faq-item { background: white; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px; padding: 18px 20px; }
         .faq-q { font-weight: bold; color: #1b5e20; font-size: 1.05rem; margin-bottom: 8px; }
         .faq-a { color: #555; font-size: 0.95rem; line-height: 1.5; }
 
-        /* 구글 폼 신청 박스 */
         .subscribe-box { background: #e8f5e9; padding: 35px 25px; border-radius: 12px; text-align: center; border: 2px solid #a5d6a7; margin-top: 40px; }
         .subscribe-box h3 { color: #1b5e20; font-size: 1.4rem; margin-bottom: 10px; }
         .subscribe-box p { color: #444; margin-bottom: 20px; font-size: 0.95rem; }
@@ -55,21 +61,20 @@ HTML
 
     <div class="container">
         
-        <!-- 1. 카테고리 탭 버튼 -->
+        <!-- 카테고리 탭 버튼 -->
         <div class="tab-menu">
-            <button class="tab-btn active" onclick="filterCategory('all')">🌿 전체보기</button>
-            <button class="tab-btn" onclick="filterCategory('policy')">💰 지원금 & 융자</button>
-            <button class="tab-btn" onclick="filterCategory('edu')">🎓 추천 교육</button>
-            <button class="tab-btn" onclick="filterCategory('cert')">📜 자격증 & 추천도서</button>
-            <button class="tab-btn" onclick="filterCategory('faq')">❓ 자주 묻는 질문</button>
+            <button class="tab-btn active" onclick="filterCategory('all', this)">🌿 전체보기</button>
+            <button class="tab-btn" onclick="filterCategory('policy', this)">💰 지원금 & 융자</button>
+            <button class="tab-btn" onclick="filterCategory('edu', this)">🎓 추천 교육</button>
+            <button class="tab-btn" onclick="filterCategory('cert', this)">📜 자격증 & 추천도서</button>
+            <button class="tab-btn" onclick="filterCategory('faq', this)">❓ 자주 묻는 질문</button>
         </div>
 
-        <!-- [섹션 1] 주요 정책 및 교육 카드 -->
+        <!-- 주요 정책 및 교육 카드 -->
         <div id="content-cards">
             <h2 class="section-title">📢 핵심 정책 & 추천 교육 정보</h2>
             <div class="card-grid">
                 
-                <!-- 카드 1: 청년후계농 (지원금) -->
                 <div class="card" data-category="policy">
                     <h3>2026 청년후계농 영농정착 지원사업</h3>
                     <ul>
@@ -81,7 +86,6 @@ HTML
                     <a href="https://www.agriedu.net" target="_blank" rel="noopener noreferrer" class="btn-official">🔗 농업교육포털 공식 안내보기</a>
                 </div>
 
-                <!-- 카드 2: 귀농 창업 (지원금) -->
                 <div class="card" data-category="policy">
                     <h3>귀농 창업 및 주택구입 지원사업</h3>
                     <ul>
@@ -92,7 +96,6 @@ HTML
                     <a href="https://www.agriedu.net" target="_blank" rel="noopener noreferrer" class="btn-official">🔗 귀농·귀촌 지원 안내보기</a>
                 </div>
 
-                <!-- 카드 3: 용인시 농업기술센터 (교육) -->
                 <div class="card" data-category="edu">
                     <h3>용인시 농업기술센터 귀농·영농 교육 안내</h3>
                     <ul>
@@ -104,7 +107,6 @@ HTML
                     <a href="https://www.yongin.go.kr/atc/index.do" target="_blank" rel="noopener noreferrer" class="btn-official">🔗 용인시 농업기술센터 바로가기</a>
                 </div>
 
-                <!-- 3. 자격증 & 도서 큐레이션 카드 -->
                 <div class="card" data-category="cert">
                     <h3>유기농업기능사 국가자격증 가이드</h3>
                     <ul>
@@ -129,7 +131,7 @@ HTML
             </div>
         </div>
 
-        <!-- 2. 자주 묻는 질문(FAQ) 섹션 -->
+        <!-- 자주 묻는 질문(FAQ) 섹션 -->
         <div id="faq-section" style="display: block;">
             <h2 class="section-title">❓ 자주 묻는 질문 (FAQ)</h2>
             
@@ -149,11 +151,10 @@ HTML
             </div>
         </div>
 
-        <!-- 무료 알림 신청 (구글 폼 연결) -->
+        <!-- 구글 폼 연결 박스 -->
         <div class="subscribe-box">
             <h3>💌 최신 지원금 & 교육 소식을 무료로 받아보세요!</h3>
             <p>지자체별 보조금 공모, 추천 정착 교육, 귀농 가이드를 이메일로 빠르게 보내드립니다.</p>
-            <!-- 아래 href 따옴표 안에 복사해두신 구글 폼 주소를 넣으세요! -->
             <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" class="btn-primary">👉 소식지 무료 신청하러 가기</a>
         </div>
 
@@ -163,12 +164,13 @@ HTML
         <p>&copy; 2026 Green Bridge. All rights reserved.</p>
     </footer>
 
-    <!-- 탭 필터 작동 스크립트 -->
     <script>
-        function filterCategory(category) {
+        function filterCategory(category, element) {
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if (element) {
+                element.classList.add('active');
+            }
 
             const cards = document.querySelectorAll('.card');
             const faqSection = document.getElementById('faq-section');
