@@ -1,0 +1,74 @@
+HTML
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그린브릿지 - 청년농부 & 귀농·귀촌 종합 큐레이션</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Malgun Gothic', sans-serif; }
+        body { background-color: #f9fbf8; color: #333; line-height: 1.6; }
+        header { background-color: #2e7d32; color: white; padding: 40px 20px; text-align: center; }
+        header h1 { font-size: 2.2rem; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        .section-title { font-size: 1.5rem; color: #1b5e20; margin-bottom: 20px; border-left: 5px solid #4caf50; padding-left: 10px; }
+        
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid #4caf50; }
+        .card h3 { color: #2e7d32; margin-bottom: 10px; font-size: 1.2rem; }
+        .card p { color: #666; font-size: 0.95rem; }
+
+        .subscribe-box { background: #e8f5e9; padding: 30px; border-radius: 10px; text-align: center; margin-top: 40px; }
+        .subscribe-box h3 { color: #1b5e20; margin-bottom: 10px; }
+        .subscribe-box p { margin-bottom: 20px; color: #555; }
+        .subscribe-input { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .subscribe-input input { padding: 12px; width: 60%; max-width: 300px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; }
+        .subscribe-input button { padding: 12px 20px; background-color: #2e7d32; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; font-weight: bold; }
+        .subscribe-input button:hover { background-color: #1b5e20; }
+
+        footer { text-align: center; padding: 20px; background-color: #333; color: white; margin-top: 60px; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌱 그린브릿지 (Green Bridge)</h1>
+        <p>성공적인 귀농·귀촌과 청년농부를 위한 맞춤형 정보 큐레이션</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">제공하는 주요 서비스</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>💰 정부 지원금 & 보조금</h3>
+                <p>청년후계농 영농정착지원금, 창업 자금, 지자체별 지원 혜택을 한눈에 비교하고 검색하세요.</p>
+            </div>
+            <div class="card">
+                <h3>🎓 농업 교육 및 자격증</h3>
+                <p>농업기술센터 교육 일정부터 전문 자격증, 농업계 학교 진학 정보까지 모아드립니다.</p>
+            </div>
+            <div class="card">
+                <h3>💬 선배 농부 멘토링</h3>
+                <p>먼저 정착한 청년 농부들의 생생한 성공·시행착오 노하우와 리얼 인터뷰를 확인하세요.</p>
+            </div>
+        </div>
+
+        <div class="subscribe-box">
+            <h3>매주 업데이트되는 지원금 소식을 받아보세요!</h3>
+            <p>이메일을 남겨주시면 놓치기 쉬운 지원사업 마감일을 알려드립니다.</p>
+            <div class="subscribe-input">
+                <input type="email" placeholder="이메일 주소를 입력하세요">
+                <button onclick="alert('신청이 완료되었습니다! (테스트용 알림)')">구독하기</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Green Bridge. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
