@@ -9,7 +9,7 @@ HTML
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; }
         body { background-color: #f8faf6; color: #333; line-height: 1.6; }
         
-        /* 4. 새소식 강조 상단 띠 배너 */
+        /* 상단 공지 띠 배너 */
         .notice-banner { background-color: #1b5e20; color: #e8f5e9; text-align: center; padding: 10px 15px; font-size: 0.9rem; font-weight: bold; border-bottom: 1px solid #2e7d32; }
         .notice-banner span { background-color: #ffeb3b; color: #1b5e20; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; margin-right: 8px; }
 
@@ -36,7 +36,14 @@ HTML
         .btn-official { display: inline-block; padding: 8px 16px; background-color: #f1f8e9; color: #2e7d32; text-decoration: none; border-radius: 5px; font-size: 0.9rem; font-weight: bold; border: 1px solid #c8e6c9; transition: 0.2s; }
         .btn-official:hover { background-color: #c8e6c9; }
 
-        /* 2. 2026 농업 일정 타임라인 캘린더 스타일 */
+        /* 1. 간이 진단 체크리스트 스타일 */
+        .check-box { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; margin-bottom: 40px; }
+        .check-item { margin-bottom: 12px; font-size: 0.95rem; }
+        .check-item input { margin-right: 8px; transform: scale(1.2); }
+        .btn-calc { padding: 10px 20px; background-color: #2e7d32; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.95rem; margin-top: 10px; }
+        .calc-result { margin-top: 15px; padding: 15px; background: #e8f5e9; border-radius: 8px; font-weight: bold; color: #1b5e20; display: none; }
+
+        /* 2. 농업 일정 타임라인 스타일 */
         .timeline-container { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; margin-bottom: 40px; }
         .timeline-item { display: flex; align-items: flex-start; padding: 12px 0; border-bottom: 1px dashed #e0e0e0; }
         .timeline-item:last-child { border-bottom: none; }
@@ -61,7 +68,7 @@ HTML
 </head>
 <body>
 
-    <!-- 4. 새소식 강조 상단 띠 배너 -->
+    <!-- 상단 공지 띠 배너 -->
     <div class="notice-banner">
         <span>공지사항</span> 📢 2026년 하반기 용인시 농업기술센터 귀농·영농 맞춤 교육 신청 접수 중!
     </div>
@@ -76,14 +83,79 @@ HTML
         <!-- 카테고리 탭 버튼 -->
         <div class="tab-menu">
             <button class="tab-btn active" onclick="filterCategory('all', this)">🌿 전체보기</button>
+            <button class="tab-btn" onclick="filterCategory('check', this)">🧮 지원금 간이진단</button>
             <button class="tab-btn" onclick="filterCategory('policy', this)">💰 지원금 & 융자</button>
             <button class="tab-btn" onclick="filterCategory('edu', this)">🎓 추천 교육</button>
             <button class="tab-btn" onclick="filterCategory('calendar', this)">🗓️ 2026 농정 일정</button>
+            <button class="tab-btn" onclick="filterCategory('guide', this)">📥 서류 준비 가이드</button>
+            <button class="tab-btn" onclick="filterCategory('org', this)">📍 주요 지원 기관</button>
             <button class="tab-btn" onclick="filterCategory('cert', this)">📜 자격증 & 추천도서</button>
             <button class="tab-btn" onclick="filterCategory('faq', this)">❓ 자주 묻는 질문</button>
         </div>
 
-        <!-- 2. 2026 농업 일정 타임라인 섹션 -->
+        <!-- 1. 지원금 자격 간이 진단 코너 -->
+        <div id="check-section">
+            <h2 class="section-title">🧮 나의 맞춤 지원금 간이 진단</h2>
+            <div class="check-box">
+                <p style="margin-bottom: 15px; font-weight: bold; color: #2e7d32;">해당하는 항목에 체크해 보세요:</p>
+                <div class="check-item"><label><input type="checkbox" id="q1"> 신청 연도 기준 만 18세 이상 ~ 만 40세 미만이다.</label></div>
+                <div class="check-item"><label><input type="checkbox" id="q2"> 독립 영농 경력이 없거나 3년 이하이다.</label></div>
+                <div class="check-item"><label><input type="checkbox" id="q3"> 귀농/영농 관련 교육을 100시간 이상 이수했다(또는 이수 예정이다).</label></div>
+                <div class="check-item"><label><input type="checkbox" id="q4"> 도시 지역에서 농촌 지역으로 이주하였거나 이주할 예정이다.</label></div>
+                <button class="btn-calc" onclick="calculateSupport()">👉 진단 결과 확인하기</button>
+                <div id="calcResult" class="calc-result"></div>
+            </div>
+        </div>
+
+        <!-- 2. 필수 제출 서류 준비 가이드 코너 -->
+        <div id="guide-section">
+            <h2 class="section-title">📥 필수 제출 서류 & 준비 가이드</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>📄 영농창업계획서 작성 핵심 팁</h3>
+                    <ul>
+                        <li><span class="tag">서류</span> 사업계획서/영농창업계획서</li>
+                        <li><span class="tag">핵심</span> 구체적인 재배 품목 선택 및 예상 출하 경로 명시</li>
+                        <li><span class="tag">팁</span> 초기 투자 비용과 연간 추정 매출을 현실성 있게 작성</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🎓 귀농 교육 수료증 발급 안내</h3>
+                    <ul>
+                        <li><span class="tag">기관</span> 농업교육포털(agriedu.net) 및 지자체 농업기술센터</li>
+                        <li><span class="tag">기준</span> 정부 지원사업 신청 시 최소 100시간 이상 수료 권장</li>
+                        <li><span class="tag">팁</span> 온라인 교육과 현장 실습 교육을 병행하여 이수 가능</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 주요 농업 지원 기관 안내 코너 -->
+        <div id="org-section">
+            <h2 class="section-title">📍 주요 농업 지원 기관 및 문의처</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>용인시 농업기술센터</h3>
+                    <ul>
+                        <li><span class="tag">위치</span> 경기도 용인시 처인구 백암면</li>
+                        <li><span class="tag">주요업무</span> 농업인 교육, 신기술 보급, 주말농장 및 귀농 상담</li>
+                        <li><span class="tag">문의</span> 031-324-4020 (공식 상담)</li>
+                    </ul>
+                    <a href="https://www.yongin.go.kr/atc/index.do" target="_blank" rel="noopener noreferrer" class="btn-official">🔗 홈페이지 바로가기</a>
+                </div>
+                <div class="card">
+                    <h3>귀농귀촌 종합센터 (농정원)</h3>
+                    <ul>
+                        <li><span class="tag">위치</span> 세종특별자치시 (전국 종합 상담)</li>
+                        <li><span class="tag">주요업무</span> 귀농귀촌 맞춤형 정책 안내, 교육 이수 관리, 상담</li>
+                        <li><span class="tag">문의</span> 1899-9097 (귀농귀촌 콜센터)</li>
+                    </ul>
+                    <a href="https://www.returnfarm.com" target="_blank" rel="noopener noreferrer" class="btn-official">🔗 귀농귀촌 종합센터 바로가기</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 농업 일정 타임라인 코너 -->
         <div id="calendar-section">
             <h2 class="section-title">🗓️ 2026년 핵심 농업 & 귀농 일정 타임라인</h2>
             <div class="timeline-container">
@@ -106,20 +178,6 @@ HTML
                     <div class="timeline-content">
                         <h4>지자체 농업기술센터 영농교육 & 주말농장 개장</h4>
                         <p>용인시 등 지자체 신규 농업인 교육 개강 및 주말농장 텃밭 분양 시작</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-badge">7월 ~ 8월</div>
-                    <div class="timeline-content">
-                        <h4>귀농 창업 및 주택구입 지원사업 (하반기)</h4>
-                        <p>하반기 귀농 정착 및 창업 자금 추가 신청 모집 공고</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-badge">10월 ~ 11월</div>
-                    <div class="timeline-content">
-                        <h4>국가기술자격증(유기농업기능사 등) 마지막 실기시험</h4>
-                        <p>농업 관련 자격증 연간 마지막 실기시험 및 합격자 발표</p>
                     </div>
                 </div>
             </div>
@@ -168,7 +226,6 @@ HTML
                         <li><span class="tag">구분</span> 📜 자격증</li>
                         <li><span class="tag">개요</span> 친환경 농업, 유기농산물 생산 및 토양 관리를 검증하는 국가자격</li>
                         <li><span class="tag">장점</span> 귀농·귀촌 창업 가산점 및 친환경 영농 필수 지식 습득</li>
-                        <li><span class="tag">시험</span> 필기(객관식) & 실기(유기농업 실무) 연 3~4회 시행</li>
                     </ul>
                     <a href="https://www.q-net.or.kr" target="_blank" rel="noopener noreferrer" class="btn-official">🔗 Q-Net 자격증 시험일정 확인</a>
                 </div>
@@ -179,7 +236,6 @@ HTML
                         <li><span class="tag">구분</span> 📜 추천도서</li>
                         <li><span class="tag">추천 1</span> 《시골에 집을 짓고 농사를 지어볼까》 (초보 귀농 종합가이드)</li>
                         <li><span class="tag">추천 2</span> 《농부의 서재》 (농업의 가치와 생태 친화적 삶)</li>
-                        <li><span class="tag">추천 3</span> 《스마트팜이 바꾸는 미래 농업》 (디지털 첨단 농업 입문)</li>
                     </ul>
                 </div>
 
@@ -199,11 +255,6 @@ HTML
                 <div class="faq-q">Q. 청년후계농 정착지원금은 나이 제한이 어떻게 되나요?</div>
                 <div class="faq-a">신청 연도 기준 만 18세 이상부터 만 40세 미만까지 신청이 가능하며, 독립경영 3년 이하인 청년 농업인이 대상입니다.</div>
             </div>
-
-            <div class="faq-item">
-                <div class="faq-q">Q. 지원금이나 교육 소식을 매번 검색하지 않고 받아볼 수 있나요?</div>
-                <div class="faq-a">아래 '소식지 무료 신청' 버튼을 통해 이메일을 남겨주시면, 새로운 지자체 공모 및 교육 일정이 나올 때마다 메일로 소식을 발송해 드립니다!</div>
-            </div>
         </div>
 
         <!-- 구글 폼 연결 박스 -->
@@ -220,6 +271,29 @@ HTML
     </footer>
 
     <script>
+        function calculateSupport() {
+            const q1 = document.getElementById('q1').checked;
+            const q2 = document.getElementById('q2').checked;
+            const q3 = document.getElementById('q3').checked;
+            const q4 = document.getElementById('q4').checked;
+            const resultBox = document.getElementById('calcResult');
+
+            let message = "";
+
+            if (q1 && q2) {
+                message += "💡 <b>'청년후계농 영농정착 지원사업'</b> 신청 조건에 매우 부합합니다! (월 최대 110만원 정착금 + 5억 융자)<br>";
+            }
+            if (q3 && q4) {
+                message += "💡 <b>'귀농 창업 및 주택구입 지원사업'</b> 신청 자격을 갖추셨습니다! (창업 3억, 주택 7,500만 자금)<br>";
+            }
+            if (!q1 && !q2 && !q3 && !q4) {
+                message = "항목을 선택해 주세요! 조건에 맞는 맞춤 지원사업을 안내해 드립니다.";
+            }
+
+            resultBox.innerHTML = message;
+            resultBox.style.display = 'block';
+        }
+
         function filterCategory(category, element) {
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
@@ -228,33 +302,27 @@ HTML
             }
 
             const cards = document.querySelectorAll('.card');
-            const faqSection = document.getElementById('faq-section');
-            const calendarSection = document.getElementById('calendar-section');
-            const contentCards = document.getElementById('content-cards');
+            const sections = {
+                check: document.getElementById('check-section'),
+                guide: document.getElementById('guide-section'),
+                org: document.getElementById('org-section'),
+                calendar: document.getElementById('calendar-section'),
+                content: document.getElementById('content-cards'),
+                faq: document.getElementById('faq-section')
+            };
+
+            // 전체 숨기기
+            Object.values(sections).forEach(s => { if(s) s.style.display = 'none'; });
 
             if (category === 'all') {
+                Object.values(sections).forEach(s => { if(s) s.style.display = 'block'; });
                 cards.forEach(card => card.style.display = 'block');
-                contentCards.style.display = 'block';
-                calendarSection.style.display = 'block';
-                faqSection.style.display = 'block';
-            } else if (category === 'calendar') {
-                contentCards.style.display = 'none';
-                faqSection.style.display = 'none';
-                calendarSection.style.display = 'block';
-            } else if (category === 'faq') {
-                contentCards.style.display = 'none';
-                calendarSection.style.display = 'none';
-                faqSection.style.display = 'block';
+            } else if (sections[category]) {
+                sections[category].style.display = 'block';
             } else {
-                calendarSection.style.display = 'none';
-                faqSection.style.display = 'none';
-                contentCards.style.display = 'block';
+                sections.content.style.display = 'block';
                 cards.forEach(card => {
-                    if (card.getAttribute('data-category') === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    card.style.display = (card.getAttribute('data-category') === category) ? 'block' : 'none';
                 });
             }
         }
