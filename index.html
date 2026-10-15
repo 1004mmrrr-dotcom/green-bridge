@@ -1,3 +1,4 @@
+HTML
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,14 +8,25 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; }
         body { background-color: #f8faf6; color: #333; line-height: 1.6; }
-        header { background-color: #2e7d32; color: white; padding: 45px 20px; text-align: center; }
+        
+        /* 4. 새소식 강조 상단 띠 배너 */
+        .notice-banner { background-color: #1b5e20; color: #e8f5e9; text-align: center; padding: 10px 15px; font-size: 0.9rem; font-weight: bold; border-bottom: 1px solid #2e7d32; }
+        .notice-banner span { background-color: #ffeb3b; color: #1b5e20; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; margin-right: 8px; }
+
+        header { background-color: #2e7d32; color: white; padding: 40px 20px; text-align: center; }
         header h1 { font-size: 2.2rem; margin-bottom: 10px; font-weight: bold; }
         header p { font-size: 1.1rem; opacity: 0.95; }
         
         .container { max-width: 850px; margin: 0 auto; padding: 30px 20px; }
         
-        .tab-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        .tab-btn { padding: 10px 20px; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 20px; color: #2e7d32; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
+        /* 1. 실시간 검색창 스타일 */
+        .search-box-container { margin-bottom: 25px; text-align: center; }
+        .search-input { width: 100%; max-width: 500px; padding: 14px 20px; font-size: 1rem; border: 2px solid #a5d6a7; border-radius: 30px; outline: none; transition: 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+        .search-input:focus { border-color: #2e7d32; box-shadow: 0 4px 10px rgba(46, 125, 50, 0.15); }
+
+        /* 카테고리 탭 메뉴 */
+        .tab-menu { display: flex; justify-content: center; gap: 8px; margin-bottom: 30px; flex-wrap: wrap; }
+        .tab-btn { padding: 9px 18px; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 20px; color: #2e7d32; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.9rem; }
         .tab-btn:hover, .tab-btn.active { background: #2e7d32; color: white; border-color: #2e7d32; }
 
         .section-title { font-size: 1.4rem; color: #1b5e20; margin-bottom: 20px; border-left: 5px solid #4caf50; padding-left: 12px; font-weight: bold; }
@@ -29,20 +41,29 @@
         .btn-official { display: inline-block; padding: 8px 16px; background-color: #f1f8e9; color: #2e7d32; text-decoration: none; border-radius: 5px; font-size: 0.9rem; font-weight: bold; border: 1px solid #c8e6c9; transition: 0.2s; }
         .btn-official:hover { background-color: #c8e6c9; }
 
+        /* FAQ 스타일 */
         .faq-item { background: white; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px; padding: 18px 20px; }
         .faq-q { font-weight: bold; color: #1b5e20; font-size: 1.05rem; margin-bottom: 8px; }
         .faq-a { color: #555; font-size: 0.95rem; line-height: 1.5; }
 
+        /* 구글 폼 연결 박스 */
         .subscribe-box { background: #e8f5e9; padding: 35px 25px; border-radius: 12px; text-align: center; border: 2px solid #a5d6a7; margin-top: 40px; }
         .subscribe-box h3 { color: #1b5e20; font-size: 1.4rem; margin-bottom: 10px; }
         .subscribe-box p { color: #444; margin-bottom: 20px; font-size: 0.95rem; }
         .btn-primary { display: inline-block; padding: 14px 32px; background-color: #2e7d32; color: white; border-radius: 8px; font-size: 1.1rem; text-decoration: none; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s; }
         .btn-primary:hover { background-color: #1b5e20; transform: translateY(-2px); }
 
+        .no-results { text-align: center; padding: 30px; color: #888; font-size: 1rem; display: none; }
+
         footer { text-align: center; padding: 25px 20px; background-color: #222; color: #aaa; margin-top: 60px; font-size: 0.85rem; }
     </style>
 </head>
 <body>
+
+    <!-- 4. 새소식 강조 상단 띠 배너 -->
+    <div class="notice-banner">
+        <span>공지사항</span> 📢 2026년 하반기 용인시 농업기술센터 귀농·영농 맞춤 교육 신청 접수 중!
+    </div>
 
     <header>
         <h1>🌱 그린브릿지 (Green Bridge)</h1>
@@ -51,6 +72,11 @@
 
     <div class="container">
         
+        <!-- 1. 실시간 검색창 -->
+        <div class="search-box-container">
+            <input type="text" id="keywordSearch" class="search-input" onkeyup="searchCards()" placeholder="🔍 찾으시는 지원금, 지역, 교육 키워드를 입력하세요 (예: 용인, 융자, 자격증)">
+        </div>
+
         <!-- 카테고리 탭 버튼 -->
         <div class="tab-menu">
             <button class="tab-btn active" onclick="filterCategory('all', this)">🌿 전체보기</button>
@@ -119,6 +145,8 @@
                 </div>
 
             </div>
+            
+            <div id="noResults" class="no-results">검색 결과가 없습니다. 다른 키워드로 검색해 보세요!</div>
         </div>
 
         <!-- 자주 묻는 질문(FAQ) 섹션 -->
@@ -145,6 +173,7 @@
         <div class="subscribe-box">
             <h3>💌 최신 지원금 & 교육 소식을 무료로 받아보세요!</h3>
             <p>지자체별 보조금 공모, 추천 정착 교육, 귀농 가이드를 이메일로 빠르게 보내드립니다.</p>
+            <!-- 아래 href 따옴표 안에 구글 폼 주소를 넣어주세요 -->
             <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" class="btn-primary">👉 소식지 무료 신청하러 가기</a>
         </div>
 
@@ -155,31 +184,61 @@
     </footer>
 
     <script>
+        let currentCategory = 'all';
+
+        // 카테고리 필터링
         function filterCategory(category, element) {
+            currentCategory = category;
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             if (element) {
                 element.classList.add('active');
             }
 
+            // 검색창 초기화
+            document.getElementById('keywordSearch').value = '';
+            
+            applyFilter();
+        }
+
+        // 실시간 키워드 검색
+        function searchCards() {
+            applyFilter();
+        }
+
+        // 필터 및 검색 통합 적용
+        function applyFilter() {
+            const keyword = document.getElementById('keywordSearch').value.toLowerCase().trim();
             const cards = document.querySelectorAll('.card');
             const faqSection = document.getElementById('faq-section');
+            const noResults = document.getElementById('noResults');
+            let visibleCount = 0;
 
-            if (category === 'all') {
-                cards.forEach(card => card.style.display = 'block');
-                faqSection.style.display = 'block';
-            } else if (category === 'faq') {
+            if (currentCategory === 'faq') {
                 cards.forEach(card => card.style.display = 'none');
                 faqSection.style.display = 'block';
+                noResults.style.display = 'none';
+                return;
+            }
+
+            faqSection.style.display = (currentCategory === 'all' && keyword === '') ? 'block' : 'none';
+
+            cards.forEach(card => {
+                const categoryMatch = (currentCategory === 'all' || card.getAttribute('data-category') === currentCategory);
+                const textMatch = card.innerText.toLowerCase().includes(keyword);
+
+                if (categoryMatch && textMatch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0 && currentCategory !== 'faq') {
+                noResults.style.display = 'block';
             } else {
-                faqSection.style.display = 'none';
-                cards.forEach(card => {
-                    if (card.getAttribute('data-category') === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                noResults.style.display = 'none';
             }
         }
     </script>
