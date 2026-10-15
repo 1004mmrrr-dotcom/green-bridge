@@ -40,8 +40,11 @@ HTML
         .check-box { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; margin-bottom: 40px; }
         .check-item { margin-bottom: 12px; font-size: 0.95rem; }
         .check-item input { margin-right: 8px; transform: scale(1.2); }
-        .btn-calc { padding: 10px 20px; background-color: #2e7d32; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.95rem; margin-top: 10px; }
-        .calc-result { margin-top: 15px; padding: 15px; background: #e8f5e9; border-radius: 8px; font-weight: bold; color: #1b5e20; display: none; }
+        .btn-calc { padding: 10px 20px; background-color: #2e7d32; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.95rem; margin-top: 10px; transition: 0.2s; }
+        .btn-calc:hover { background-color: #1b5e20; }
+        
+        /* 결과 박스 수정 (초기에도 투명하게 존재하도록 변경) */
+        .calc-result { margin-top: 15px; padding: 15px; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 8px; font-size: 0.95rem; color: #1b5e20; line-height: 1.5; display: block; }
 
         /* 2. 농업 일정 타임라인 스타일 */
         .timeline-container { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; margin-bottom: 40px; }
@@ -103,7 +106,7 @@ HTML
                 <div class="check-item"><label><input type="checkbox" id="q3"> 귀농/영농 관련 교육을 100시간 이상 이수했다(또는 이수 예정이다).</label></div>
                 <div class="check-item"><label><input type="checkbox" id="q4"> 도시 지역에서 농촌 지역으로 이주하였거나 이주할 예정이다.</label></div>
                 <button class="btn-calc" onclick="calculateSupport()">👉 진단 결과 확인하기</button>
-                <div id="calcResult" class="calc-result"></div>
+                <div id="calcResult" class="calc-result">항목에 체크한 뒤 <b>'진단 결과 확인하기'</b> 버튼을 눌러보세요!</div>
             </div>
         </div>
 
@@ -281,17 +284,18 @@ HTML
             let message = "";
 
             if (q1 && q2) {
-                message += "💡 <b>'청년후계농 영농정착 지원사업'</b> 신청 조건에 매우 부합합니다! (월 최대 110만원 정착금 + 5억 융자)<br>";
+                message += "✅ <b>[청년후계농 영농정착 지원사업]</b> 신청 조건에 부합합니다! (월 최대 110만 원 정착지원금 + 창업 융자 5억)<br>";
             }
             if (q3 && q4) {
-                message += "💡 <b>'귀농 창업 및 주택구입 지원사업'</b> 신청 자격을 갖추셨습니다! (창업 3억, 주택 7,500만 자금)<br>";
+                message += "✅ <b>[귀농 창업 및 주택구입 지원사업]</b> 신청 자격 조건(교육 이수 및 이주 예정)을 갖추셨습니다! (창업 3억, 주택 7,500만 원)<br>";
             }
             if (!q1 && !q2 && !q3 && !q4) {
-                message = "항목을 선택해 주세요! 조건에 맞는 맞춤 지원사업을 안내해 드립니다.";
+                message = "⚠️ 최소 한 가지 이상의 항목에 체크해 주세요!";
+            } else if (message === "") {
+                message = "💡 선택하신 조건에 해당하는 대표 정부 지원사업을 다시 한번 확인해 보세요. (추가 교육 이수나 연령 조건 등을 확인하시면 더 많은 혜택을 받으실 수 있습니다.)";
             }
 
             resultBox.innerHTML = message;
-            resultBox.style.display = 'block';
         }
 
         function filterCategory(category, element) {
