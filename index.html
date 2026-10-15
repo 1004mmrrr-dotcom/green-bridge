@@ -23,15 +23,17 @@ HTML
             --radius-lg: 16px;
             --radius-md: 10px;
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-            --shadow-hover: 0 12px 24px rgba(45, 106, 79, 0.12);
+            --shadow-hover: 0 12px 24px rgba(45, 106, 79, 0.15);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; word-break: keep-all; }
         body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.65; -webkit-font-smoothing: antialiased; }
         
-        /* 상단 공지 띠 배너 */
-        .notice-banner { background: linear-gradient(90deg, #1b4332 0%, #2d6a4f 100%); color: #ffffff; text-align: center; padding: 11px 20px; font-size: 0.9rem; font-weight: 500; letter-spacing: -0.3px; }
+        /* 상단 공지 띠 배너 (클릭 가능 효과) */
+        .notice-banner { background: linear-gradient(90deg, #1b4332 0%, #2d6a4f 100%); color: #ffffff; text-align: center; padding: 11px 20px; font-size: 0.9rem; font-weight: 500; letter-spacing: -0.3px; cursor: pointer; transition: background 0.3s ease; }
+        .notice-banner:hover { background: linear-gradient(90deg, #2d6a4f 0%, #40916c 100%); }
         .notice-banner .badge { background-color: #ffeb3b; color: #1b4332; padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; margin-right: 8px; vertical-align: middle; }
+        .notice-banner .btn-detail { margin-left: 10px; text-decoration: underline; font-size: 0.82rem; opacity: 0.9; }
 
         /* 히어로 헤더 */
         header { background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 60%, #40916c 100%); color: white; padding: 60px 20px 50px; text-align: center; position: relative; overflow: hidden; }
@@ -43,44 +45,46 @@ HTML
         
         /* 카테고리 탭 메뉴 */
         .tab-menu { display: flex; justify-content: center; gap: 8px; margin-bottom: 35px; flex-wrap: wrap; }
-        .tab-btn { padding: 10px 20px; background: white; border: 1px solid var(--border-color); border-radius: 30px; color: var(--text-dark); font-weight: 600; cursor: pointer; transition: all 0.25s ease; font-size: 0.92rem; box-shadow: var(--shadow-sm); }
-        .tab-btn:hover, .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2); }
+        .tab-btn { padding: 10px 20px; background: white; border: 1px solid var(--border-color); border-radius: 30px; color: var(--text-dark); font-weight: 600; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); font-size: 0.92rem; box-shadow: var(--shadow-sm); }
+        .tab-btn:hover, .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 16px rgba(45, 106, 79, 0.25); }
 
         .section-title { font-family: 'Noto Serif KR', serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 22px; border-left: 5px solid var(--primary-light); padding-left: 14px; font-weight: 700; letter-spacing: -0.3px; }
         
-        /* 카드 디자인 */
+        /* 카드 디자인 & 페이드인 애니메이션 */
         .card-grid { display: grid; gap: 22px; margin-bottom: 45px; }
-        .card { background: white; border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.04); transition: all 0.3s ease; }
-        .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: rgba(82, 183, 136, 0.3); }
+        .card { background: white; border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.04); transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); animation: fadeInUp 0.5s ease-out forwards; }
+        .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: rgba(82, 183, 136, 0.4); }
         .card h3 { color: var(--primary-dark); font-size: 1.3rem; margin-bottom: 16px; font-weight: 700; letter-spacing: -0.3px; }
         .card ul { list-style: none; margin-bottom: 20px; }
         .card li { margin-bottom: 9px; font-size: 0.95rem; color: #495057; display: flex; align-items: flex-start; }
         .tag { display: inline-block; background: var(--accent-bg); color: var(--primary); padding: 3px 10px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; margin-right: 8px; flex-shrink: 0; }
         
-        .btn-official { display: inline-block; padding: 10px 18px; background-color: #f1f8e9; color: var(--primary-dark); text-decoration: none; border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 700; border: 1px solid #c8e6c9; transition: all 0.2s ease; }
-        .btn-official:hover { background-color: var(--primary); color: white; border-color: var(--primary); }
+        .btn-official { display: inline-block; padding: 10px 18px; background-color: #f1f8e9; color: var(--primary-dark); text-decoration: none; border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 700; border: 1px solid #c8e6c9; transition: all 0.25s ease; }
+        .btn-official:hover { background-color: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); }
 
         /* 비교표 스타일 */
-        .table-container { overflow-x: auto; margin-bottom: 45px; background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color); padding: 10px; box-shadow: var(--shadow-sm); }
+        .table-container { overflow-x: auto; margin-bottom: 45px; background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color); padding: 10px; box-shadow: var(--shadow-sm); animation: fadeInUp 0.5s ease-out forwards; }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.93rem; }
         th, td { padding: 15px 18px; border-bottom: 1px solid #f1f3f5; }
         th { background-color: var(--accent-bg); color: var(--primary-dark); font-weight: 700; border-bottom: 2px solid var(--border-color); }
 
         /* Quick Links 스타일 */
         .quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 45px; }
-        .quick-btn { display: flex; align-items: center; justify-content: center; padding: 18px; background: white; border: 1px solid var(--border-color); border-radius: var(--radius-md); text-decoration: none; color: var(--primary-dark); font-weight: 700; transition: all 0.25s ease; box-shadow: var(--shadow-sm); }
-        .quick-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(45, 106, 79, 0.15); }
+        .quick-btn { display: flex; align-items: center; justify-content: center; padding: 18px; background: white; border: 1px solid var(--border-color); border-radius: var(--radius-md); text-decoration: none; color: var(--primary-dark); font-weight: 700; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: var(--shadow-sm); }
+        .quick-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 8px 18px rgba(45, 106, 79, 0.2); }
 
         /* 농업 일정 타임라인 스타일 */
-        .timeline-container { background: white; border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); margin-bottom: 45px; }
-        .timeline-item { display: flex; align-items: flex-start; padding: 16px 0; border-bottom: 1px dashed var(--border-color); }
+        .timeline-container { background: white; border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); margin-bottom: 45px; animation: fadeInUp 0.5s ease-out forwards; }
+        .timeline-item { display: flex; align-items: flex-start; padding: 16px 0; border-bottom: 1px dashed var(--border-color); transition: background 0.2s ease; }
+        .timeline-item:hover { background: #fafdfa; }
         .timeline-item:last-child { border-bottom: none; }
         .timeline-badge { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; min-width: 90px; text-align: center; margin-right: 18px; flex-shrink: 0; box-shadow: 0 2px 6px rgba(45, 106, 79, 0.2); }
         .timeline-content h4 { color: var(--primary-dark); font-size: 1.05rem; margin-bottom: 4px; font-weight: 700; }
         .timeline-content p { color: var(--text-muted); font-size: 0.92rem; }
 
         /* FAQ 스타일 */
-        .faq-item { background: white; border: 1px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: 14px; padding: 20px 24px; box-shadow: var(--shadow-sm); }
+        .faq-item { background: white; border: 1px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: 14px; padding: 20px 24px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease; }
+        .faq-item:hover { transform: translateX(4px); }
         .faq-q { font-weight: 700; color: var(--primary-dark); font-size: 1.05rem; margin-bottom: 8px; }
         .faq-a { color: #495057; font-size: 0.95rem; line-height: 1.6; }
 
@@ -88,17 +92,35 @@ HTML
         .subscribe-box { background: linear-gradient(135deg, #e8f5e9 0%, #d8f3dc 100%); padding: 40px 30px; border-radius: var(--radius-lg); text-align: center; border: 1px solid #b7e4c7; margin-top: 50px; box-shadow: var(--shadow-sm); }
         .subscribe-box h3 { color: var(--primary-dark); font-family: 'Noto Serif KR', serif; font-size: 1.5rem; margin-bottom: 10px; font-weight: 700; }
         .subscribe-box p { color: #2b9348; margin-bottom: 24px; font-size: 0.98rem; font-weight: 500; }
-        .btn-primary { display: inline-block; padding: 15px 36px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border-radius: 30px; font-size: 1.1rem; text-decoration: none; font-weight: 700; box-shadow: 0 6px 16px rgba(45, 106, 79, 0.25); transition: all 0.25s ease; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(45, 106, 79, 0.35); }
+        .btn-primary { display: inline-block; padding: 15px 36px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border-radius: 30px; font-size: 1.1rem; text-decoration: none; font-weight: 700; box-shadow: 0 6px 16px rgba(45, 106, 79, 0.25); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 24px rgba(45, 106, 79, 0.35); }
+
+        /* 팝업 모달 스타일 */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); backdrop-filter: blur(4px); z-index: 999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-card { background: white; border-radius: var(--radius-lg); padding: 32px; max-width: 540px; width: 90%; box-shadow: 0 20px 40px rgba(0,0,0,0.25); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
+        .modal-overlay.active .modal-card { transform: translateY(0); }
+        .modal-close { position: absolute; top: 18px; right: 20px; background: none; border: none; font-size: 1.5rem; color: #888; cursor: pointer; transition: color 0.2s; }
+        .modal-close:hover { color: var(--primary-dark); }
+        .modal-title { font-family: 'Noto Serif KR', serif; font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 15px; font-weight: 700; }
+        .modal-content { font-size: 0.96rem; color: #444; line-height: 1.6; margin-bottom: 24px; }
+        .modal-content ul { list-style: disc; padding-left: 20px; margin-top: 10px; }
+        .modal-content li { margin-bottom: 6px; }
+
+        /* 페이드인 애니메이션 정의 */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         footer { text-align: center; padding: 30px 20px; background-color: #1a1d20; color: #8c959f; margin-top: 70px; font-size: 0.88rem; }
     </style>
 </head>
 <body>
 
-    <!-- 상단 공지 띠 배너 -->
-    <div class="notice-banner">
-        <span class="badge">공지사항</span> 📢 2026년 하반기 용인시 농업기술센터 귀농·영농 맞춤 교육 신청 접수 중!
+    <!-- 상단 공지 띠 배너 (클릭 시 팝업 실행) -->
+    <div class="notice-banner" onclick="openModal()">
+        <span class="badge">공지사항</span> 📢 2026년 하반기 용인시 농업기술센터 귀농·영농 맞춤 교육 신청 접수 중! <span class="btn-detail">[자세히 보기]</span>
     </div>
 
     <header>
@@ -311,11 +333,51 @@ HTML
 
     </div>
 
+    <!-- 팝업 모달창 -->
+    <div id="noticeModal" class="modal-overlay" onclick="closeModalOnBg(event)">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3 class="modal-title">📢 용인시 농업기술센터 영농교육 안내</h3>
+            <div class="modal-content">
+                <p><b>2026년 하반기 신규 농업인 맞춤형 교육 모집 중입니다.</b></p>
+                <ul>
+                    <li><b>교육 내용:</b> 스마트팜 기초, 친환경 재배 기술, 농업 창업 마케팅</li>
+                    <li><b>교육 대상:</b> 용인시 귀농·귀촌 희망자 및 신규 농업인</li>
+                    <li><b>신청 방법:</b> 용인시 농업기술센터 홈페이지 온라인 접수</li>
+                </ul>
+            </div>
+            <a href="https://www.yongin.go.kr/atc/index.do" target="_blank" class="btn-primary" style="display: block; text-align: center;">🔗 용인시 농업기술센터로 이동</a>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 Green Bridge. All rights reserved.</p>
     </footer>
 
     <script>
+        /* 팝업 모달 제어 함수 */
+        function openModal() {
+            const modal = document.getElementById('noticeModal');
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('noticeModal');
+            modal.classList.remove('active');
+        }
+
+        function closeModalOnBg(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                closeModal();
+            }
+        }
+
+        /* ESC 키 누르면 팝업 닫기 */
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        /* 카테고리 필터링 제어 함수 */
         function filterCategory(category, element) {
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
