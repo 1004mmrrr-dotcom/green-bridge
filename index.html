@@ -29,7 +29,7 @@ HTML
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; word-break: keep-all; }
         body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.65; -webkit-font-smoothing: antialiased; }
         
-        /* 상단 공지 띠 배너 (클릭 가능 효과) */
+        /* 상단 공지 띠 배너 */
         .notice-banner { background: linear-gradient(90deg, #1b4332 0%, #2d6a4f 100%); color: #ffffff; text-align: center; padding: 11px 20px; font-size: 0.9rem; font-weight: 500; letter-spacing: -0.3px; cursor: pointer; transition: background 0.3s ease; }
         .notice-banner:hover { background: linear-gradient(90deg, #2d6a4f 0%, #40916c 100%); }
         .notice-banner .badge { background-color: #ffeb3b; color: #1b4332; padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; margin-right: 8px; vertical-align: middle; }
@@ -50,7 +50,7 @@ HTML
 
         .section-title { font-family: 'Noto Serif KR', serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 22px; border-left: 5px solid var(--primary-light); padding-left: 14px; font-weight: 700; letter-spacing: -0.3px; }
         
-        /* 카드 디자인 & 페이드인 애니메이션 */
+        /* 카드 디자인 */
         .card-grid { display: grid; gap: 22px; margin-bottom: 45px; }
         .card { background: white; border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.04); transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); animation: fadeInUp 0.5s ease-out forwards; }
         .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: rgba(82, 183, 136, 0.4); }
@@ -88,26 +88,30 @@ HTML
         .faq-q { font-weight: 700; color: var(--primary-dark); font-size: 1.05rem; margin-bottom: 8px; }
         .faq-a { color: #495057; font-size: 0.95rem; line-height: 1.6; }
 
-        /* 구글 폼 연결 박스 */
+        /* 하단 소식지 상자 */
         .subscribe-box { background: linear-gradient(135deg, #e8f5e9 0%, #d8f3dc 100%); padding: 40px 30px; border-radius: var(--radius-lg); text-align: center; border: 1px solid #b7e4c7; margin-top: 50px; box-shadow: var(--shadow-sm); }
         .subscribe-box h3 { color: var(--primary-dark); font-family: 'Noto Serif KR', serif; font-size: 1.5rem; margin-bottom: 10px; font-weight: 700; }
         .subscribe-box p { color: #2b9348; margin-bottom: 24px; font-size: 0.98rem; font-weight: 500; }
-        .btn-primary { display: inline-block; padding: 15px 36px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border-radius: 30px; font-size: 1.1rem; text-decoration: none; font-weight: 700; box-shadow: 0 6px 16px rgba(45, 106, 79, 0.25); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .btn-primary { display: inline-block; padding: 15px 36px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; border-radius: 30px; font-size: 1.1rem; text-decoration: none; font-weight: 700; box-shadow: 0 6px 16px rgba(45, 106, 79, 0.25); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 24px rgba(45, 106, 79, 0.35); }
 
-        /* 팝업 모달 스타일 */
+        /* 팝업 모달 공통 스타일 */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); backdrop-filter: blur(4px); z-index: 999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay.active { display: flex; opacity: 1; }
-        .modal-card { background: white; border-radius: var(--radius-lg); padding: 32px; max-width: 540px; width: 90%; box-shadow: 0 20px 40px rgba(0,0,0,0.25); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
+        .modal-card { background: white; border-radius: var(--radius-lg); padding: 32px; max-width: 500px; width: 90%; box-shadow: 0 20px 40px rgba(0,0,0,0.25); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
         .modal-overlay.active .modal-card { transform: translateY(0); }
         .modal-close { position: absolute; top: 18px; right: 20px; background: none; border: none; font-size: 1.5rem; color: #888; cursor: pointer; transition: color 0.2s; }
         .modal-close:hover { color: var(--primary-dark); }
-        .modal-title { font-family: 'Noto Serif KR', serif; font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 15px; font-weight: 700; }
-        .modal-content { font-size: 0.96rem; color: #444; line-height: 1.6; margin-bottom: 24px; }
-        .modal-content ul { list-style: disc; padding-left: 20px; margin-top: 10px; }
-        .modal-content li { margin-bottom: 6px; }
+        .modal-title { font-family: 'Noto Serif KR', serif; font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 12px; font-weight: 700; }
+        .modal-content { font-size: 0.96rem; color: #444; line-height: 1.6; margin-bottom: 20px; }
 
-        /* 페이드인 애니메이션 정의 */
+        /* 소식지 팝업 입력 양식 */
+        .form-group { text-align: left; margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 0.88rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+        .form-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+        .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15); }
+
+        /* 페이드인 애니메이션 */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(18px); }
             to { opacity: 1; transform: translateY(0); }
@@ -118,8 +122,8 @@ HTML
 </head>
 <body>
 
-    <!-- 상단 공지 띠 배너 (클릭 시 팝업 실행) -->
-    <div class="notice-banner" onclick="openModal()">
+    <!-- 상단 공지 띠 배너 -->
+    <div class="notice-banner" onclick="openModal('noticeModal')">
         <span class="badge">공지사항</span> 📢 2026년 하반기 용인시 농업기술센터 귀농·영농 맞춤 교육 신청 접수 중! <span class="btn-detail">[자세히 보기]</span>
     </div>
 
@@ -324,29 +328,49 @@ HTML
             </div>
         </div>
 
-        <!-- 구글 폼 연결 박스 -->
+        <!-- 소식지 신청 버튼 박스 (팝업 호출 버튼) -->
         <div class="subscribe-box">
             <h3>💌 최신 지원금 & 교육 소식을 무료로 받아보세요!</h3>
             <p>지자체별 보조금 공모, 추천 정착 교육, 귀농 가이드를 이메일로 빠르게 보내드립니다.</p>
-            <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" class="btn-primary">👉 소식지 무료 신청하러 가기</a>
+            <button class="btn-primary" onclick="openModal('subscribeModal')">👉 소식지 무료 신청하기</button>
         </div>
 
     </div>
 
-    <!-- 팝업 모달창 -->
-    <div id="noticeModal" class="modal-overlay" onclick="closeModalOnBg(event)">
+    <!-- 1. 공지사항 모달 팝업 -->
+    <div id="noticeModal" class="modal-overlay" onclick="closeModalOnBg(event, 'noticeModal')">
         <div class="modal-card">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <button class="modal-close" onclick="closeModal('noticeModal')">&times;</button>
             <h3 class="modal-title">📢 용인시 농업기술센터 영농교육 안내</h3>
             <div class="modal-content">
                 <p><b>2026년 하반기 신규 농업인 맞춤형 교육 모집 중입니다.</b></p>
-                <ul>
+                <ul style="list-style: disc; padding-left: 20px; margin-top: 10px;">
                     <li><b>교육 내용:</b> 스마트팜 기초, 친환경 재배 기술, 농업 창업 마케팅</li>
                     <li><b>교육 대상:</b> 용인시 귀농·귀촌 희망자 및 신규 농업인</li>
                     <li><b>신청 방법:</b> 용인시 농업기술센터 홈페이지 온라인 접수</li>
                 </ul>
             </div>
-            <a href="https://www.yongin.go.kr/atc/index.do" target="_blank" class="btn-primary" style="display: block; text-align: center;">🔗 용인시 농업기술센터로 이동</a>
+            <a href="https://www.yongin.go.kr/atc/index.do" target="_blank" class="btn-official" style="display: block; text-align: center;">🔗 용인시 농업기술센터로 이동</a>
+        </div>
+    </div>
+
+    <!-- 2. 소식지 구독 신청 모달 팝업 -->
+    <div id="subscribeModal" class="modal-overlay" onclick="closeModalOnBg(event, 'subscribeModal')">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal('subscribeModal')">&times;</button>
+            <h3 class="modal-title">💌 그린브릿지 소식지 무료 구독</h3>
+            <p class="modal-content" style="margin-bottom: 15px;">이메일을 등록해 주시면 최신 지원금 공모와 교육 일정을 전달해 드립니다.</p>
+            <form onsubmit="handleModalSubscribe(event)">
+                <div class="form-group">
+                    <label for="subName">이름 (성함)</label>
+                    <input type="text" id="subName" class="form-input" placeholder="홍길동" required>
+                </div>
+                <div class="form-group">
+                    <label for="subEmailModal">이메일 주소</label>
+                    <input type="email" id="subEmailModal" class="form-input" placeholder="example@email.com" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">신청 완료하기</button>
+            </form>
         </div>
     </div>
 
@@ -355,26 +379,39 @@ HTML
     </footer>
 
     <script>
-        /* 팝업 모달 제어 함수 */
-        function openModal() {
-            const modal = document.getElementById('noticeModal');
-            modal.classList.add('active');
+        /* 모달 팝업 제어 함수 */
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
         }
 
-        function closeModal() {
-            const modal = document.getElementById('noticeModal');
-            modal.classList.remove('active');
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
         }
 
-        function closeModalOnBg(event) {
+        function closeModalOnBg(event, modalId) {
             if (event.target.classList.contains('modal-overlay')) {
-                closeModal();
+                closeModal(modalId);
             }
         }
 
-        /* ESC 키 누르면 팝업 닫기 */
+        /* 구독 신청 팝업 제출 처리 */
+        function handleModalSubscribe(event) {
+            event.preventDefault();
+            const name = document.getElementById('subName').value;
+            const email = document.getElementById('subEmailModal').value;
+            
+            alert(`🎉 ${name}님, ${email}(으)로 소식지 신청이 성공적으로 완료되었습니다!`);
+            
+            document.getElementById('subName').value = '';
+            document.getElementById('subEmailModal').value = '';
+            closeModal('subscribeModal');
+        }
+
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
+            if (e.key === 'Escape') {
+                closeModal('noticeModal');
+                closeModal('subscribeModal');
+            }
         });
 
         /* 카테고리 필터링 제어 함수 */
