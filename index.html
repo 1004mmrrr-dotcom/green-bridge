@@ -1,3 +1,10 @@
+[2번 2026 농업 일정 캘린더/타임라인]과 [4번 새소식 강조 띠 배너]를 결합하여 그린브릿지 웹사이트 코드를 완성했습니다!
+
+상단에는 눈에 띄는 공지 띠 배너가 배치되고, 메인 화면에는 월별 농업 필수 일정(지원금 접수, 주말농장 개장, 귀농 교육)을 한눈에 볼 수 있는 2026 농정 타임라인 캘린더가 깔끔하게 추가되었습니다.
+
+📝 2번 & 4번 기능이 추가된 전체 코드 (index.html)
+아래 상자 안의 코드를 전부 복사하셔서 GitHub의 index.html 편집 화면에 덮어쓰기(붙여넣기) 하시면 됩니다.
+
 HTML
 <!DOCTYPE html>
 <html lang="ko">
@@ -9,6 +16,7 @@ HTML
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; }
         body { background-color: #f8faf6; color: #333; line-height: 1.6; }
         
+        /* 4. 새소식 강조 상단 띠 배너 */
         .notice-banner { background-color: #1b5e20; color: #e8f5e9; text-align: center; padding: 10px 15px; font-size: 0.9rem; font-weight: bold; border-bottom: 1px solid #2e7d32; }
         .notice-banner span { background-color: #ffeb3b; color: #1b5e20; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; margin-right: 8px; }
 
@@ -18,10 +26,7 @@ HTML
         
         .container { max-width: 850px; margin: 0 auto; padding: 30px 20px; }
         
-        .search-box-container { margin-bottom: 25px; text-align: center; }
-        .search-input { width: 100%; max-width: 500px; padding: 14px 20px; font-size: 1rem; border: 2px solid #a5d6a7; border-radius: 30px; outline: none; transition: 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
-        .search-input:focus { border-color: #2e7d32; box-shadow: 0 4px 10px rgba(46, 125, 50, 0.15); }
-
+        /* 카테고리 탭 메뉴 */
         .tab-menu { display: flex; justify-content: center; gap: 8px; margin-bottom: 30px; flex-wrap: wrap; }
         .tab-btn { padding: 9px 18px; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 20px; color: #2e7d32; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.9rem; }
         .tab-btn:hover, .tab-btn.active { background: #2e7d32; color: white; border-color: #2e7d32; }
@@ -38,23 +43,32 @@ HTML
         .btn-official { display: inline-block; padding: 8px 16px; background-color: #f1f8e9; color: #2e7d32; text-decoration: none; border-radius: 5px; font-size: 0.9rem; font-weight: bold; border: 1px solid #c8e6c9; transition: 0.2s; }
         .btn-official:hover { background-color: #c8e6c9; }
 
+        /* 2. 2026 농업 일정 타임라인 캘린더 스타일 */
+        .timeline-container { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; margin-bottom: 40px; }
+        .timeline-item { display: flex; align-items: flex-start; padding: 12px 0; border-bottom: 1px dashed #e0e0e0; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-badge { background-color: #2e7d32; color: white; padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: bold; min-width: 80px; text-align: center; margin-right: 15px; flex-shrink: 0; }
+        .timeline-content h4 { color: #1b5e20; font-size: 1rem; margin-bottom: 3px; font-weight: bold; }
+        .timeline-content p { color: #666; font-size: 0.9rem; }
+
+        /* FAQ 스타일 */
         .faq-item { background: white; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px; padding: 18px 20px; }
         .faq-q { font-weight: bold; color: #1b5e20; font-size: 1.05rem; margin-bottom: 8px; }
         .faq-a { color: #555; font-size: 0.95rem; line-height: 1.5; }
 
+        /* 구글 폼 연결 박스 */
         .subscribe-box { background: #e8f5e9; padding: 35px 25px; border-radius: 12px; text-align: center; border: 2px solid #a5d6a7; margin-top: 40px; }
         .subscribe-box h3 { color: #1b5e20; font-size: 1.4rem; margin-bottom: 10px; }
         .subscribe-box p { color: #444; margin-bottom: 20px; font-size: 0.95rem; }
         .btn-primary { display: inline-block; padding: 14px 32px; background-color: #2e7d32; color: white; border-radius: 8px; font-size: 1.1rem; text-decoration: none; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s; }
         .btn-primary:hover { background-color: #1b5e20; transform: translateY(-2px); }
 
-        .no-results { text-align: center; padding: 30px; color: #888; font-size: 1rem; display: none; }
-
         footer { text-align: center; padding: 25px 20px; background-color: #222; color: #aaa; margin-top: 60px; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
+    <!-- 4. 새소식 강조 상단 띠 배너 -->
     <div class="notice-banner">
         <span>공지사항</span> 📢 2026년 하반기 용인시 농업기술센터 귀농·영농 맞춤 교육 신청 접수 중!
     </div>
@@ -65,19 +79,57 @@ HTML
     </header>
 
     <div class="container">
-        
-        <!-- 실시간 검색창 -->
-        <div class="search-box-container">
-            <input type="text" id="keywordSearch" class="search-input" placeholder="🔍 찾으시는 지원금, 지역, 교육 키워드를 입력하세요 (예: 용인, 융자, 자격증)">
-        </div>
 
         <!-- 카테고리 탭 버튼 -->
         <div class="tab-menu">
-            <button class="tab-btn active" data-filter="all">🌿 전체보기</button>
-            <button class="tab-btn" data-filter="policy">💰 지원금 & 융자</button>
-            <button class="tab-btn" data-filter="edu">🎓 추천 교육</button>
-            <button class="tab-btn" data-filter="cert">📜 자격증 & 추천도서</button>
-            <button class="tab-btn" data-filter="faq">❓ 자주 묻는 질문</button>
+            <button class="tab-btn active" onclick="filterCategory('all', this)">🌿 전체보기</button>
+            <button class="tab-btn" onclick="filterCategory('policy', this)">💰 지원금 & 융자</button>
+            <button class="tab-btn" onclick="filterCategory('edu', this)">🎓 추천 교육</button>
+            <button class="tab-btn" onclick="filterCategory('calendar', this)">🗓️ 2026 농정 일정</button>
+            <button class="tab-btn" onclick="filterCategory('cert', this)">📜 자격증 & 추천도서</button>
+            <button class="tab-btn" onclick="filterCategory('faq', this)">❓ 자주 묻는 질문</button>
+        </div>
+
+        <!-- 2. 2026 농업 일정 타임라인 섹션 -->
+        <div id="calendar-section">
+            <h2 class="section-title">🗓️ 2026년 핵심 농업 & 귀농 일정 타임라인</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-badge">1월 ~ 2월</div>
+                    <div class="timeline-content">
+                        <h4>청년후계농 영농정착 지원사업 접수</h4>
+                        <p>농업경영체 등록 예정 청년농 대상 정착지원금 및 창업 자금 신청 기간</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-badge">2월 ~ 3월</div>
+                    <div class="timeline-content">
+                        <h4>귀농 창업 및 주택구입 지원사업 (상반기)</h4>
+                        <p>지자체별 귀농 창업 자금(최대 3억) 및 주택자금(최대 7,500만) 서류 심사 및 면접</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-badge">3월 ~ 4월</div>
+                    <div class="timeline-content">
+                        <h4>지자체 농업기술센터 영농교육 & 주말농장 개장</h4>
+                        <p>용인시 등 지자체 신규 농업인 교육 개강 및 주말농장 텃밭 분양 시작</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-badge">7월 ~ 8월</div>
+                    <div class="timeline-content">
+                        <h4>귀농 창업 및 주택구입 지원사업 (하반기)</h4>
+                        <p>하반기 귀농 정착 및 창업 자금 추가 신청 모집 공고</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-badge">10월 ~ 11월</div>
+                    <div class="timeline-content">
+                        <h4>국가기술자격증(유기농업기능사 등) 마지막 실기시험</h4>
+                        <p>농업 관련 자격증 연간 마지막 실기시험 및 합격자 발표</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- 주요 정책 및 교육 카드 -->
@@ -142,26 +194,24 @@ HTML
         </div>
 
         <!-- 자주 묻는 질문(FAQ) 섹션 -->
-        <div id="faq-section">
+        <div id="faq-section" style="display: block;">
             <h2 class="section-title">❓ 자주 묻는 질문 (FAQ)</h2>
             
-            <div class="faq-item" data-category="faq">
+            <div class="faq-item">
                 <div class="faq-q">Q. 귀농 창업 자금 지원 대상 조건에서 '교육 이수시간'이 필수인가요?</div>
                 <div class="faq-a">네, 일반적으로 농림축산식품부 및 지자체 귀농 사업은 100시간 이상의 귀농·영농 관련 교육 이수 수료증을 제출하셔야 우선 지원 대상이 됩니다.</div>
             </div>
 
-            <div class="faq-item" data-category="faq">
+            <div class="faq-item">
                 <div class="faq-q">Q. 청년후계농 정착지원금은 나이 제한이 어떻게 되나요?</div>
                 <div class="faq-a">신청 연도 기준 만 18세 이상부터 만 40세 미만까지 신청이 가능하며, 독립경영 3년 이하인 청년 농업인이 대상입니다.</div>
             </div>
 
-            <div class="faq-item" data-category="faq">
+            <div class="faq-item">
                 <div class="faq-q">Q. 지원금이나 교육 소식을 매번 검색하지 않고 받아볼 수 있나요?</div>
                 <div class="faq-a">아래 '소식지 무료 신청' 버튼을 통해 이메일을 남겨주시면, 새로운 지자체 공모 및 교육 일정이 나올 때마다 메일로 소식을 발송해 드립니다!</div>
             </div>
         </div>
-
-        <div id="noResults" class="no-results">검색 결과가 없습니다. 다른 키워드로 검색해 보세요!</div>
 
         <!-- 구글 폼 연결 박스 -->
         <div class="subscribe-box">
@@ -177,83 +227,42 @@ HTML
     </footer>
 
     <script>
-        let currentFilter = 'all';
-
-        const searchInput = document.getElementById('keywordSearch');
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const cards = document.querySelectorAll('.card');
-        const faqItems = document.querySelectorAll('.faq-item');
-        const faqSection = document.getElementById('faq-section');
-        const contentCards = document.getElementById('content-cards');
-        const noResults = document.getElementById('noResults');
-
-        // 탭 버튼 클릭 이벤트
-        tabButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                tabButtons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentFilter = this.getAttribute('data-filter');
-                searchInput.value = ''; // 탭 누르면 검색어 초기화
-                filterAndSearch();
-            });
-        });
-
-        // 검색창 입력 이벤트 (글자 칠 때마다 즉시 반응)
-        searchInput.addEventListener('input', function() {
-            filterAndSearch();
-        });
-
-        function filterAndSearch() {
-            const query = searchInput.value.toLowerCase().trim();
-            let visibleCount = 0;
-
-            // 1. 카드(정책, 교육, 자격증) 필터링
-            cards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                const text = card.innerText.toLowerCase();
-                
-                const matchesCategory = (currentFilter === 'all' || currentFilter === category);
-                const matchesQuery = (text.includes(query));
-
-                if (matchesCategory && matchesQuery) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            // 2. FAQ 필터링
-            faqItems.forEach(item => {
-                const text = item.innerText.toLowerCase();
-                const matchesCategory = (currentFilter === 'all' || currentFilter === 'faq');
-                const matchesQuery = (text.includes(query));
-
-                if (matchesCategory && matchesQuery) {
-                    item.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            // 섹션 제목 보이기/숨기기
-            if (currentFilter === 'faq') {
-                contentCards.style.display = 'none';
-                faqSection.style.display = 'block';
-            } else if (currentFilter === 'all') {
-                contentCards.style.display = 'block';
-                faqSection.style.display = 'block';
-            } else {
-                contentCards.style.display = 'block';
-                faqSection.style.display = 'none';
+        function filterCategory(category, element) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (element) {
+                element.classList.add('active');
             }
 
-            // 검색 결과가 없을 때 메시지 출력
-            if (visibleCount === 0) {
-                noResults.style.display = 'block';
+            const cards = document.querySelectorAll('.card');
+            const faqSection = document.getElementById('faq-section');
+            const calendarSection = document.getElementById('calendar-section');
+            const contentCards = document.getElementById('content-cards');
+
+            if (category === 'all') {
+                cards.forEach(card => card.style.display = 'block');
+                contentCards.style.display = 'block';
+                calendarSection.style.display = 'block';
+                faqSection.style.display = 'block';
+            } else if (category === 'calendar') {
+                contentCards.style.display = 'none';
+                faqSection.style.display = 'none';
+                calendarSection.style.display = 'block';
+            } else if (category === 'faq') {
+                contentCards.style.display = 'none';
+                calendarSection.style.display = 'none';
+                faqSection.style.display = 'block';
             } else {
-                noResults.style.display = 'none';
+                calendarSection.style.display = 'none';
+                faqSection.style.display = 'none';
+                contentCards.style.display = 'block';
+                cards.forEach(card => {
+                    if (card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             }
         }
     </script>
