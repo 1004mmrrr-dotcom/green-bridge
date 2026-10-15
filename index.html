@@ -36,6 +36,17 @@ HTML
         .btn-official { display: inline-block; padding: 8px 16px; background-color: #f1f8e9; color: #2e7d32; text-decoration: none; border-radius: 5px; font-size: 0.9rem; font-weight: bold; border: 1px solid #c8e6c9; transition: 0.2s; }
         .btn-official:hover { background-color: #c8e6c9; }
 
+        /* 비교표 스타일 */
+        .table-container { overflow-x: auto; margin-bottom: 40px; background: white; border-radius: 10px; border: 1px solid #e0e0e0; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+        th, td { padding: 12px 15px; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #e8f5e9; color: #1b5e20; font-weight: bold; }
+
+        /* Quick Links 스타일 */
+        .quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 40px; }
+        .quick-btn { display: block; padding: 15px; background: white; border: 1px solid #c8e6c9; border-radius: 8px; text-align: center; text-decoration: none; color: #1b5e20; font-weight: bold; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .quick-btn:hover { background: #e8f5e9; border-color: #2e7d32; }
+
         /* 농업 일정 타임라인 스타일 */
         .timeline-container { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; margin-bottom: 40px; }
         .timeline-item { display: flex; align-items: flex-start; padding: 12px 0; border-bottom: 1px dashed #e0e0e0; }
@@ -76,11 +87,51 @@ HTML
         <!-- 카테고리 탭 버튼 -->
         <div class="tab-menu">
             <button class="tab-btn active" onclick="filterCategory('all', this)">🌿 전체보기</button>
+            <button class="tab-btn" onclick="filterCategory('compare', this)">📊 지원사업 비교표</button>
             <button class="tab-btn" onclick="filterCategory('policy', this)">💰 지원금 & 융자</button>
             <button class="tab-btn" onclick="filterCategory('edu', this)">🎓 추천 교육</button>
             <button class="tab-btn" onclick="filterCategory('calendar', this)">🗓️ 2026 농정 일정</button>
+            <button class="tab-btn" onclick="filterCategory('tips', this)">💡 정착 꿀팁</button>
             <button class="tab-btn" onclick="filterCategory('cert', this)">📜 자격증 & 추천도서</button>
             <button class="tab-btn" onclick="filterCategory('faq', this)">❓ 자주 묻는 질문</button>
+        </div>
+
+        <!-- 1. 핵심 지원사업 비교표 섹션 -->
+        <div id="compare-section">
+            <h2 class="section-title">📊 2026 핵심 농업 지원사업 한눈에 비교하기</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>구분</th>
+                            <th>청년후계농 영농정착지원</th>
+                            <th>귀농 창업 및 주택구입 지원</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>지원 대상</b></td>
+                            <td>만 18세 이상 ~ 만 40세 미만 (독립경영 3년 이하)</td>
+                            <td>농촌 지역 이주 귀농인 (교육 100시간 이수)</td>
+                        </tr>
+                        <tr>
+                            <td><b>직접 지원금</b></td>
+                            <td>최장 3년간 월 최대 110만 원 (바우처)</td>
+                            <td>- (융자 지원 중심)</td>
+                        </tr>
+                        <tr>
+                            <td><b>창업 융자 한도</b></td>
+                            <td>최대 5억 원 한도 (저리 융자)</td>
+                            <td>창업 자금 최대 3억 원 / 주택 자금 최대 7,500만 원</td>
+                        </tr>
+                        <tr>
+                            <td><b>핵심 요건</b></td>
+                            <td>영농창업계획서 제출 및 영농 종사 의무</td>
+                            <td>귀농 교육 수료증 및 농촌 이주 주소지 등록</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- 2026 농업 일정 타임라인 섹션 -->
@@ -178,6 +229,40 @@ HTML
             </div>
         </div>
 
+        <!-- 2. 성공 정착 꿀팁 섹션 -->
+        <div id="tips-section">
+            <h2 class="section-title">💡 초보 농부 성공 정착 꿀팁 4선</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>🌾 1. 농지 확보 노하우</h3>
+                    <p>초기 땅 구입이 부담스럽다면 한국농어촌공사의 <b>'농지은행'</b> 임대차 사업을 적극 활용하세요. 저렴하게 농지를 장기 임대받을 수 있습니다.</p>
+                </div>
+                <div class="card">
+                    <h3>🎓 2. 귀농 교육 100시간 채우기</h3>
+                    <p>농업교육포털의 온라인 과정(최대 40시간 인정)과 지자체 농업기술센터의 실습 교육을 조합하면 빠르고 효율적으로 시간을 채울 수 있습니다.</p>
+                </div>
+                <div class="card">
+                    <h3>🤝 3. 지자체 멘토링 제도 활용</h3>
+                    <p>용인시 등 지자체에서 제공하는 <b>'선도농가 현장 실습 지원'</b> 프로그램을 신청하면 선배 농부에게 1:1로 노하우를 배우며 수당도 지원받습니다.</p>
+                </div>
+                <div class="card">
+                    <h3>🍓 4. 초기 작물 선택 전략</h3>
+                    <p>초기에는 판로 확보가 용이하고 초기 시설 투자 부담이 적거나, 지역 특화 작목(예: 용인 시설채소, 딸기 등)을 선택하는 것이 안전합니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 주요 농업 포털 퀵링크 섹션 -->
+        <div id="quicklinks-section">
+            <h2 class="section-title">🔗 주요 농업 공식 포털 바로가기</h2>
+            <div class="quick-links">
+                <a href="https://www.agriedu.net" target="_blank" rel="noopener noreferrer" class="quick-btn">🌾 농업교육포털</a>
+                <a href="https://www.greendaero.go.kr" target="_blank" rel="noopener noreferrer" class="quick-btn">🏡 그린대로 (귀농귀촌)</a>
+                <a href="https://www.fbo.or.kr" target="_blank" rel="noopener noreferrer" class="quick-btn">🚜 농지은행</a>
+                <a href="https://www.yongin.go.kr/atc/index.do" target="_blank" rel="noopener noreferrer" class="quick-btn">📍 용인 농업기술센터</a>
+            </div>
+        </div>
+
         <!-- 자주 묻는 질문(FAQ) 섹션 -->
         <div id="faq-section" style="display: block;">
             <h2 class="section-title">❓ 자주 묻는 질문 (FAQ)</h2>
@@ -215,33 +300,26 @@ HTML
             }
 
             const cards = document.querySelectorAll('.card');
-            const faqSection = document.getElementById('faq-section');
-            const calendarSection = document.getElementById('calendar-section');
-            const contentCards = document.getElementById('content-cards');
+            const sections = {
+                compare: document.getElementById('compare-section'),
+                calendar: document.getElementById('calendar-section'),
+                content: document.getElementById('content-cards'),
+                tips: document.getElementById('tips-section'),
+                quicklinks: document.getElementById('quicklinks-section'),
+                faq: document.getElementById('faq-section')
+            };
 
             if (category === 'all') {
+                Object.values(sections).forEach(s => { if(s) s.style.display = 'block'; });
                 cards.forEach(card => card.style.display = 'block');
-                contentCards.style.display = 'block';
-                calendarSection.style.display = 'block';
-                faqSection.style.display = 'block';
-            } else if (category === 'calendar') {
-                contentCards.style.display = 'none';
-                faqSection.style.display = 'none';
-                calendarSection.style.display = 'block';
-            } else if (category === 'faq') {
-                contentCards.style.display = 'none';
-                calendarSection.style.display = 'none';
-                faqSection.style.display = 'block';
+            } else if (sections[category]) {
+                Object.values(sections).forEach(s => { if(s) s.style.display = 'none'; });
+                sections[category].style.display = 'block';
             } else {
-                calendarSection.style.display = 'none';
-                faqSection.style.display = 'none';
-                contentCards.style.display = 'block';
+                Object.values(sections).forEach(s => { if(s) s.style.display = 'none'; });
+                sections.content.style.display = 'block';
                 cards.forEach(card => {
-                    if (card.getAttribute('data-category') === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    card.style.display = (card.getAttribute('data-category') === category) ? 'block' : 'none';
                 });
             }
         }
